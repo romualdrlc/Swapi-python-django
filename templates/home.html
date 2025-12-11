@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Accueil{% endblock %} 
+{% block content %}
+<div class="text-center">
+  <h1>Bienvenue sur la Star Wars API</h1>
+  <p class="lead">
+    Explorez les personnages, planètes et véhicules de l’univers Star Wars
+  </p>
+
+  <img src="{% static 'picture/planetes.jpg' %}" alt="Planètes" class="img-fluid my-4">
+
+  <p>Utilisez la barre de navigation ci-dessus pour parcourir :</p>
+
+  <ul class="list-group w-50 mx-auto">
+    <li class="list-group-item">
+      <strong>Personnages</strong> — Voir tous les héros et méchants
+    </li>
+    <li class="list-group-item">
+      <strong>Planètes</strong> — Explorer les mondes de la galaxie
+    </li>
+    <li class="list-group-item">
+      <strong>Véhicules</strong> — Découvrir les engins les plus iconiques
+    </li>
+  </ul>
+</div>
+{% endblock %}

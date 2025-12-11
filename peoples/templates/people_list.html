@@ -1,0 +1,16 @@
+{% extends "base.html" %} 
+
+{% block title %}Liste des personnages{% endblock %}
+{% block content %}
+<h1>Liste des personnages</h1>
+
+<ul class="list-group">
+  {% for people in people_list %}
+  <li class="list-group-item">
+    <a href="{% url 'people_detail' people.id %}">{{ people.nom }}</a>
+  </li>
+  {% empty %}
+  <li class="list-group-item">Aucun personnage trouvé.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environnement virtuel
+venv/
+ENV/
+env/
+
+# Fichiers Django
+*.sqlite3
+*.log
+
+# Static files
+/staticfiles/
+/static/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Mac OS
+.DS_Store
+
+# PyCharm
+*.iml
+.idea/
+
+# Environnement pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# pytest
+.cache/
+
+# coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Migrations
+*/migrations/*.pyc
+*/migrations/*.py~
+
+# Ignore dotenv files (if any)
+.env

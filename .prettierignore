@@ -1,0 +1,6 @@
+templates/
+*/templates/
+*.html
+*.djhtml
+*.jinja
+*.j2

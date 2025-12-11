@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+
+{% block title %}Détail du personnage{% endblock %}
+{% block content %}
+<h1>Détail du personnage</h1>
+<ul class="list-group">
+  <li class="list-group-item"><strong>Nom :</strong> {{ people.nom }}</li>
+  <li class="list-group-item"><strong>Âge :</strong> {{ people.age }}</li>
+  <li class="list-group-item"><strong>Planète d'origine :</strong> {{ people.planete_origine }}</li>
+  <li class="list-group-item"><strong>Affiliation :</strong> {{ people.affiliation }}</li>
+  <li class="list-group-item"><strong>Description :</strong> {{ people.description }}</li>
+{% endblock %}
