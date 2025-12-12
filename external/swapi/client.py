@@ -38,6 +38,11 @@ class SwapiClient:
         response.raise_for_status()
         return response.json()
     
+    def fetch_url(self, url):
+        response = self.session.get(url)
+        response.raise_for_status()
+        return response.json()
+    
     def __enter__(self):
         return self
     

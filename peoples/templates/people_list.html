@@ -2,15 +2,17 @@
 
 {% block title %}Liste des personnages{% endblock %}
 {% block content %}
-<h1>Liste des personnages</h1>
+<h1 class="mb-4">Liste des personnages</h1>
 
-<ul class="list-group">
+<div class="d-flex flex-wrap gap-3">
   {% for people in people_list %}
-  <li class="list-group-item">
-    <a href="{% url 'people_detail' people.id %}">{{ people.nom }}</a>
-  </li>
-  {% empty %}
-  <li class="list-group-item">Aucun personnage trouvé.</li>
+  <div class="card border-dark mb-3" style="width: 15vw;">
+    <div class="card-header">Numéro {{ people.id }}</div>
+    <div class="card-body text-dark">
+      <h5 class="card-title"><a class="a-link" href="{% url 'people_detail' people.id %}">{{ people.nom }}</a></h5>
+      <p class="card-text">{{ people.date_naissance }} </p>
+    </div>
+  </div>
   {% endfor %}
-</ul>
+</div>
 {% endblock %}

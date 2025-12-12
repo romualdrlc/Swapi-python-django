@@ -9,4 +9,11 @@
   <li class="list-group-item"><strong>Planète d'origine :</strong> {{ people.planete_origine }}</li>
   <li class="list-group-item"><strong>Affiliation :</strong> {{ people.affiliation }}</li>
   <li class="list-group-item"><strong>Description :</strong> {{ people.description }}</li>
+  <ul  class="list-group">  
+    <li class="list-group-item"><strong>Films :</strong></li>
+    {% for film in people.films %}
+    <li class="list-group-item">{{ film }}</li>
+    {% endfor %}
+  </ul>
+</ul>
 {% endblock %}

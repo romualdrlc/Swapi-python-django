@@ -1,6 +1,6 @@
 # external/swapi/serializers.py
 
-from external.swapi.utils import parse_int, format_date_swapi, ensure_http_url
+from external.swapi.utils import parse_int, format_date_swapi, ensure_http_url, fetch_swapi
 
 def people_serializer(data):
     if not data:
@@ -19,9 +19,13 @@ def people_serializer(data):
         "poids": parse_int(data.get("mass")),
         "couleur_cheveux": data.get("hair_color"),
         "couleur_yeux": data.get("eye_color"),
+        "films": [
+            fetch_swapi(url).get("title", "Inconnu") 
+            for url in data.get("films", [])
+        ],
         "genre": data.get("gender"),
         "date_naissance": format_date_swapi(data.get("birth_year")),
-        "planete_origine": ensure_http_url(data.get("homeworld")),
+        "planete_origine": fetch_swapi(data.get("homeworld")).get("name"),
     }
 
 

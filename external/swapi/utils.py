@@ -1,5 +1,8 @@
 # external/swapi/utils.py
 
+from external.swapi.client import SwapiClient
+
+
 def parse_int(value):
     """
     Essaie de convertir une chaîne en entier, sinon retourne None.
@@ -25,3 +28,10 @@ def ensure_http_url(url):
     if url.startswith("http://") or url.startswith("https://"):
         return url
     return "https://" + url  # ou "http://" si tu préfères
+
+def fetch_swapi(url):
+    try:
+        with SwapiClient() as client:
+            return client.fetch_url(url)
+    except:
+        return None

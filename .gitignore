@@ -47,3 +47,6 @@ htmlcov/
 
 # Ignore dotenv files (if any)
 .env
+
+git_next_message.md
+/git_next_message.md
