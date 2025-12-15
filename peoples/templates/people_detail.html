@@ -1,19 +1,39 @@
 {% extends "base.html" %} 
+{% load static %}
+<!-- Planete name et titre film : implémenté le link  -->
 
 {% block title %}Détail du personnage{% endblock %}
 {% block content %}
-<h1>Détail du personnage</h1>
-<ul class="list-group">
-  <li class="list-group-item"><strong>Nom :</strong> {{ people.nom }}</li>
-  <li class="list-group-item"><strong>Âge :</strong> {{ people.age }}</li>
-  <li class="list-group-item"><strong>Planète d'origine :</strong> {{ people.planete_origine }}</li>
-  <li class="list-group-item"><strong>Affiliation :</strong> {{ people.affiliation }}</li>
-  <li class="list-group-item"><strong>Description :</strong> {{ people.description }}</li>
-  <ul  class="list-group">  
-    <li class="list-group-item"><strong>Films :</strong></li>
-    {% for film in people.films %}
-    <li class="list-group-item">{{ film }}</li>
-    {% endfor %}
-  </ul>
-</ul>
+<div class="mb-4">
+  <h1>{{ people.nom }}</h1>
+  <div class="card mb-1" style="width: 50vw;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'picture/perso.jpg' %}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <p class="card-text">Taille : {{ people.taille }}</p>
+          <p class="card-text">Couleur des yeux : {{ people.couleur_yeux }}</p>
+          <p class="card-text">Genre : {{ people.genre }}</p>
+          <p class="card-text">Planete : {{ people.planete_origine }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mb-4">
+  <h1>Films associés :</h1>
+  <div class="d-flex gap-3">
+  {% for film in people.films %}
+    <div class="card border-dark" style="width: 15vw;">
+      <div class="card-body text-dark">
+        <p class="card-text">Titre : {{ film }}</p>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+<a href="{% url 'people_list' %}" class="btn btn-secondary btn-lg" role="button">Précédent</a>
+<a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button">Home</a>
 {% endblock %}
