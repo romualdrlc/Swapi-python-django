@@ -26,8 +26,6 @@ def people_serializer(data):
         "planete_origine": fetch_swapi(data.get("homeworld")).get("name"),
     }
 
-
-
 def planet_serializer(data):
     """
     Transforme les données brutes d'une planète SWAPI en dict simplifié.
@@ -61,6 +59,43 @@ def planet_serializer(data):
         ],
     }
 
+def vehicle_serializer(data):
+    """
+    Transforme les données brutes d'un véhicule SWAPI en dict simplifié.
+    """
+    if not data:
+        return None
+    
+    url = data.get("url", "")
+    vehicle_id = _extract_id_from_url(url)
+
+    return {
+        "id": vehicle_id,
+        "nom": data.get("name"),
+        "model": data.get('model'),
+        "manufacturer": data.get('manufacturer'),
+        "cost_in_credits": parse_int(data.get('cost_in_credits')),
+        "length": data.get('length'),
+        "max_atmosphering_speed": parse_int(data.get('max_atmosphering_speed')),
+        "crew": parse_int(data.get('crew')),
+        "passengers": parse_int(data.get('passengers')),
+        "cargo_capacity": parse_int(data.get('cargo_capacity')),
+        "vehicle_class": data.get('vehicle_class'),
+        "pilots": [
+            {
+                "id": _extract_id_from_url(url),
+                "name": fetch_swapi(url).get("name")
+            }
+            for url in data.get("pilots", [])
+        ],
+        "films": [
+            {
+                "id": _extract_id_from_url(url),
+                "title": fetch_swapi(url).get("title")
+            }
+            for url in data.get("films", [])
+        ],
+    }
 
 def _extract_id_from_url(url):
     """

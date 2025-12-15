@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from peoples.views import people_detail, people_list
 from planets.views import planet_list, planet_detail
+from vehicles.views import vehicle_list, vehicle_detail
 from .views import home, clear_swapi_cache
 
 urlpatterns = [
@@ -26,7 +27,9 @@ urlpatterns = [
     path("", home, name="home"),  
     path('peoples/', people_list, name='people_list'),
     path('planets/', planet_list, name='planet_list'),
+    path('vehicles/', vehicle_list, name='vehicle_list'),
     path('people/<int:people_id>/', people_detail, name='people_detail'),
     path('planet/<int:planet_id>/', planet_detail, name='planet_detail'),
+    path('vehicle/<int:vehicle_id>/', vehicle_detail, name='vehicle_detail'),
     path('clear_cache/', clear_swapi_cache, name='clear_swapi_cache'),
 ]

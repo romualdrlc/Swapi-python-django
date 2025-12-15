@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Détail du véhicule{% endblock %}
+{% block content %}
+<div class="mb-4">
+  <h1>{{ vehicle.nom }}</h1>
+  <div class="card mb-1" style="width: 50vw;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'picture/vehicle.jpg' %}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <p class="card-text">Modèle : {{ vehicle.model }}</p>
+          <p class="card-text">Manufacturer : {{ vehicle.manufacturer }}</p>
+          <p class="card-text">Coût : {{ vehicle.cost_in_credits }}</p>
+          <p class="card-text">Longueur : {{ vehicle.length }}</p>
+          <p class="card-text">Nombre de passagers : {{ vehicle.passengers }}</p>
+          <p class="card-text">Classe de véhicule : {{ vehicle.vehicle_class }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mb-4">
+  <h1>Pilotes du véhicule :</h1>
+  <div class="d-flex flex-wrap gap-3">
+    {% if not vehicle.pilots %}
+        <p>Aucun pilote connu pour ce véhicule.</p>
+    {% else %}
+        {% for pilot in vehicle.pilots %}
+          <div class="card border-dark" style="min-width: 15vw;">
+            <div class="card-body text-dark">
+              <p class="card-text">Résident : <a href="{% url 'people_detail' pilot.id %}" class="a-link">{{ pilot.name }}</a></p>
+            </div>
+          </div>
+        {% endfor %}
+    {% endif %}
+  </div>
+</div>
+<div class="mb-4">
+  <h1>Films associés :</h1>
+  <div class="d-flex gap-3">
+    {% if not planet.films %}
+        <p>Aucun film associé pour cette planète.</p>
+    {% else %}
+        {% for film in planet.films %}
+        <div class="card border-dark" style="width: 15vw;">
+          <div class="card-body text-dark">
+            <p class="card-text">Titre : <a href="" class="a-link">{{ film.title }}</a></p>
+          </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+  </div>
+</div>
+<a href="{% url 'vehicle_list' %}" class="btn btn-secondary btn-lg" role="button">Précédent</a>
+<a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button">Home</a>
+{% endblock %}

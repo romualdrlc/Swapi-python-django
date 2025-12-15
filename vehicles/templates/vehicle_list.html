@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <h1>Liste des véhicules</h1>
+  <div class="d-flex flex-wrap gap-3">
+    {% for vehicle in vehicle_list %}
+        <div class="card border-dark mb-3" style="width: 15vw;">
+          <div class="card-header">Numéro {{ vehicle.id }}</div>
+          <div class="card-body text-dark">
+            <h5 class="card-title"><a class="a-link" href="{% url 'vehicle_detail' vehicle.id %}">{{ vehicle.nom }}</a></h5>
+            <p class="card-text">{{ vehicle.model }} </p>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+<a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button">Home</a>
+{% endblock %}
