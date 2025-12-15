@@ -33,10 +33,13 @@
               <a class="nav-link" href="{% url 'people_list' %}">Personnages</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Planètes</a>
+              <a class="nav-link" href="{% url 'planet_list' %}">Planètes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="">Véhicules</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'clear_swapi_cache' %}">Clear Redis</a>
             </li>
           </ul>
         </div>
