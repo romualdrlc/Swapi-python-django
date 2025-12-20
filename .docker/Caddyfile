@@ -1,0 +1,10 @@
+http://:80 {
+    handle /static/* {
+        root * /django
+        file_server
+    }
+    handle {
+         reverse_proxy django:8000
+    }
+    log
+}

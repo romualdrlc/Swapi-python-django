@@ -17,7 +17,7 @@ from pathlib import Path
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+REDIS_HOST = os.getenv('REDIS_HOST', '127.0.0.1')  # par défaut 'redis', qui est le nom du service Docker
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -126,6 +126,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, "/django/static")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -134,7 +136,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": f"redis://{REDIS_HOST}:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },

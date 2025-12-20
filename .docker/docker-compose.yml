@@ -1,0 +1,48 @@
+services:
+  django:
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile
+    container_name: django_app
+    volumes:
+      - django_static:/django/static
+    expose:
+      - "8000"
+    environment:
+      - SWAPI_API_URL=https://swapi.py4e.com/api/
+      - REDIS_HOST=redis # Ajout de la variable d'environnement pour Redis
+    depends_on:
+      - redis # On indique que django dépend de redis
+    networks:
+      - django_swapi_network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    networks:
+      - django_swapi_network
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    ports:
+      - "4000:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - django_static:/django/static
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - django
+    networks:
+      - django_swapi_network
+
+volumes:
+  caddy_data:
+  caddy_config:
+  django_static:
+    external: true
+
+networks:
+  django_swapi_network:
+    driver: bridge

@@ -59,3 +59,11 @@ python manage.py runserver
 ```bash
 http://127.0.0.1:8000/
 ```
+
+## Config docker
+
+- Pour la premiere utilisation penser a créer le volume django static sinon erreur au moment du build.
+
+## Info docker et caddy pour django
+
+- https://github.com/matacoder/caddy-docker
